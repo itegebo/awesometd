@@ -15,3 +15,5 @@ missing
 src/.deps/
 src/Makefile.in
 stamp-h1
+awesometd
+compile
