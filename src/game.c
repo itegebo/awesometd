@@ -10,11 +10,11 @@
 int gPathNext(struct game *g, int x, int y)
 {
     if ( x > 0 &&
-         y > 0 &&
-         g->grid[y][x-1] == 0 &&
-         g->grid[y-1][x] == 0 &&
-         g->grid[y-1][x-1] == 0 &&
-         g->path[y-1][x-1] < g->path[y][x]-1
+            y > 0 &&
+            g->grid[y][x-1] == 0 &&
+            g->grid[y-1][x] == 0 &&
+            g->grid[y-1][x-1] == 0 &&
+            g->path[y-1][x-1] < g->path[y][x]-1
        )
     {
         return G_PATH_NEXT_NW;
@@ -132,11 +132,11 @@ static void sMove(struct game *g, struct shot *s)
     while(e)
     {
         if ( e->timeleft == 0 &&
-             e->x <= s->x &&
-             e->x+32 >= s->x &&
-             e->y <= s->y &&
-             e->y+32 >= s->y &&
-             e->hp > 0 )
+                e->x <= s->x &&
+                e->x+32 >= s->x &&
+                e->y <= s->y &&
+                e->y+32 >= s->y &&
+                e->hp > 0 )
         {
             e->hp -= s->damage;
             if ( s->debuff.type )
@@ -276,7 +276,7 @@ void gClickCell(struct game *g, int cx, int cy)
         g->grid[cy][cx] = old;
         return;
     }
-    
+
     g->money -= g->towerS->price;
     tNew(g, g->towerS, cx, cy);
     g->needpath++;
@@ -334,28 +334,28 @@ static void eFreeDead(struct game *g)
 static void edMove(struct game *g, struct enemy *e)
 {
     int i;
-    for (i=0;i<G_DEBUFF_MAX;i++)
+    for (i=0; i<G_DEBUFF_MAX; i++)
     {
         if ( e->debuffs[i].time_left )
         {
             e->debuffs[i].counter++;
             switch(e->debuffs[i].type)
             {
-                case GDB_TYPE_DOT:
-                    if ( e->debuffs[i].counter == e->debuffs[i].interval )
+            case GDB_TYPE_DOT:
+                if ( e->debuffs[i].counter == e->debuffs[i].interval )
+                {
+                    e->hp -= e->debuffs[i].damage;
+                    e->debuffs[i].counter = 0;
+                    if ( e->hp <= 0 )
                     {
-                        e->hp -= e->debuffs[i].damage;
-                        e->debuffs[i].counter = 0;
-                        if ( e->hp <= 0 )
-                        {
-                            g->money += e->price;
-                            return;
-                        }
+                        g->money += e->price;
+                        return;
                     }
-                    break;
-                case GDB_TYPE_SLOW:
-                    e->progress -= (float)e->speed * e->debuffs[i].speed_mod;
-                    break;
+                }
+                break;
+            case GDB_TYPE_SLOW:
+                e->progress -= (float)e->speed * e->debuffs[i].speed_mod;
+                break;
             }
             e->debuffs[i].time_left--;
         }
@@ -378,19 +378,19 @@ static void eMove(struct game *g, struct enemy *e)
         while ( e->frame >= 4 )
             e->frame -= 4;
 
-        for (i=0;i<2;i++)
+        for (i=0; i<2; i++)
         {
             if ( e->rot_goal != e->rot )
             {
                 if ( e->rot_goal - e->rot > 0 &&
-                     e->rot_goal - e->rot <= 180 )
+                        e->rot_goal - e->rot <= 180 )
                     e->rot += 5;
                 else
                     e->rot -= 5;
             }
             if ( e->rot < 0 )
                 e->rot += 360;
-    
+
             if ( e->rot >= 360 )
                 e->rot -= 360;
         }
@@ -405,48 +405,48 @@ static void eMove(struct game *g, struct enemy *e)
 
             switch(gPathNext(g,x,y))
             {
-                case G_PATH_NEXT_NW:
-                    e->moveX = -1;
-                    e->moveY = -1;
-                    e->rot_goal = 315;
-                    break;
-                case G_PATH_NEXT_NE:
-                    e->moveX = 1;
-                    e->moveY = -1;
-                    e->rot_goal = 45;
-                    break;
-                case G_PATH_NEXT_SE:
-                    e->moveX = 1;
-                    e->moveY = 1;
-                    e->rot_goal = 135;
-                    break;
-                case G_PATH_NEXT_SW:
-                    e->moveX = -1;
-                    e->moveY = 1;
-                    e->rot_goal = 225;
-                    break;
-                case G_PATH_NEXT_W:
-                    e->moveX = -1;
-                    e->rot_goal = 270;
-                    break;
-                case G_PATH_NEXT_E:
-                    e->moveX = 1;
-                    e->rot_goal = 90;
-                    break;
-                case G_PATH_NEXT_N:
-                    e->moveY = -1;
-                    e->rot_goal = 0;
-                    break;
-                case G_PATH_NEXT_S:
-                    e->moveY = 1;
-                    e->rot_goal = 180;
-                    break;
-                default:
-                    e->moveleft = 0;
-                    e->hp = 0;
-                    g->lives--;
-                    e->progress = 0;
-                    break;
+            case G_PATH_NEXT_NW:
+                e->moveX = -1;
+                e->moveY = -1;
+                e->rot_goal = 315;
+                break;
+            case G_PATH_NEXT_NE:
+                e->moveX = 1;
+                e->moveY = -1;
+                e->rot_goal = 45;
+                break;
+            case G_PATH_NEXT_SE:
+                e->moveX = 1;
+                e->moveY = 1;
+                e->rot_goal = 135;
+                break;
+            case G_PATH_NEXT_SW:
+                e->moveX = -1;
+                e->moveY = 1;
+                e->rot_goal = 225;
+                break;
+            case G_PATH_NEXT_W:
+                e->moveX = -1;
+                e->rot_goal = 270;
+                break;
+            case G_PATH_NEXT_E:
+                e->moveX = 1;
+                e->rot_goal = 90;
+                break;
+            case G_PATH_NEXT_N:
+                e->moveY = -1;
+                e->rot_goal = 0;
+                break;
+            case G_PATH_NEXT_S:
+                e->moveY = 1;
+                e->rot_goal = 180;
+                break;
+            default:
+                e->moveleft = 0;
+                e->hp = 0;
+                g->lives--;
+                e->progress = 0;
+                break;
             }
         }
 
@@ -470,30 +470,30 @@ static void eNew(struct game *g, struct enemy template, int count)
 
     switch(gPathNext(g,template.x/32,template.y/32))
     {
-        case G_PATH_NEXT_NW:
-            template.rot = template.rot_goal = 315;
-            break;
-        case G_PATH_NEXT_NE:
-            template.rot = template.rot_goal = 45;
-            break;
-        case G_PATH_NEXT_SE:
-            template.rot = template.rot_goal = 135;
-            break;
-        case G_PATH_NEXT_SW:
-            template.rot = template.rot_goal = 225;
-            break;
-        case G_PATH_NEXT_W:
-            template.rot = template.rot_goal = 270;
-            break;
-        case G_PATH_NEXT_E:
-            template.rot = template.rot_goal = 90;
-            break;
-        case G_PATH_NEXT_N:
-            template.rot = template.rot_goal = 0;
-            break;
-        case G_PATH_NEXT_S:
-            template.rot = template.rot_goal = 180;
-            break;
+    case G_PATH_NEXT_NW:
+        template.rot = template.rot_goal = 315;
+        break;
+    case G_PATH_NEXT_NE:
+        template.rot = template.rot_goal = 45;
+        break;
+    case G_PATH_NEXT_SE:
+        template.rot = template.rot_goal = 135;
+        break;
+    case G_PATH_NEXT_SW:
+        template.rot = template.rot_goal = 225;
+        break;
+    case G_PATH_NEXT_W:
+        template.rot = template.rot_goal = 270;
+        break;
+    case G_PATH_NEXT_E:
+        template.rot = template.rot_goal = 90;
+        break;
+    case G_PATH_NEXT_N:
+        template.rot = template.rot_goal = 0;
+        break;
+    case G_PATH_NEXT_S:
+        template.rot = template.rot_goal = 180;
+        break;
     }
 
 
@@ -570,9 +570,9 @@ static void gFindHotspots(struct game *g)
 {
     int x,y;
     g->startN = 0;
-    for(x=0;x<G_WIDTH;x++)
+    for(x=0; x<G_WIDTH; x++)
     {
-        for(y=0;y<G_HEIGHT;y++)
+        for(y=0; y<G_HEIGHT; y++)
         {
             if (g->grid[y][x] == 254)
             {
@@ -608,7 +608,7 @@ static void ttNew(struct game *g, struct tower tn)
         p = p->next;
 
     p->next = t;
-    
+
 }
 
 static void levelParser(struct game *data, char *key, char *value)
@@ -650,9 +650,12 @@ static void levelParser(struct game *data, char *key, char *value)
             return;
         }
 
-        t.price = strtol(wp,&wp,10); wp++;
-        t.speed = strtol(wp,&wp,10); wp++;
-        t.range = strtol(wp,&wp,10); wp++;
+        t.price = strtol(wp,&wp,10);
+        wp++;
+        t.speed = strtol(wp,&wp,10);
+        wp++;
+        t.range = strtol(wp,&wp,10);
+        wp++;
 
         if ( strncmp(wp, "IMP", 3) == 0 )
             t.shot_template.type = GS_TYPE_IMPACT;
@@ -668,8 +671,10 @@ static void levelParser(struct game *data, char *key, char *value)
         }
         wp += 4;
 
-        t.shot_template.damage = strtol(wp,&wp,10); wp++;
-        t.shot_template.speed = strtol(wp,&wp,10); wp++;
+        t.shot_template.damage = strtol(wp,&wp,10);
+        wp++;
+        t.shot_template.speed = strtol(wp,&wp,10);
+        wp++;
 
         if ( strncmp(wp, "NOT", 3) == 0 )
         {
@@ -679,10 +684,14 @@ static void levelParser(struct game *data, char *key, char *value)
         {
             wp += 4;
             t.shot_template.debuff.type = GDB_TYPE_DOT;
-            t.shot_template.debuff.damage = strtol(wp,&wp,10); wp++;
-            t.shot_template.debuff.interval = strtol(wp,&wp,10); wp++;
-            t.shot_template.debuff.time_left = strtol(wp,&wp,10); wp++;
-            t.shot_template.debuff.counter = strtol(wp,&wp,10); wp++;
+            t.shot_template.debuff.damage = strtol(wp,&wp,10);
+            wp++;
+            t.shot_template.debuff.interval = strtol(wp,&wp,10);
+            wp++;
+            t.shot_template.debuff.time_left = strtol(wp,&wp,10);
+            wp++;
+            t.shot_template.debuff.counter = strtol(wp,&wp,10);
+            wp++;
         }
         else if ( strncmp(wp, "SLW", 3) == 0 )
         {
@@ -699,7 +708,7 @@ static void levelParser(struct game *data, char *key, char *value)
             printf("Invalid formatting on tower.\n");
             return;
         }
-        
+
         ttNew(data, t);
     }
     if ( strcmp(key, "wave") == 0 )
@@ -709,12 +718,18 @@ static void levelParser(struct game *data, char *key, char *value)
 
         char *wp = value;
 
-        w.timeleft = strtol(wp,&wp,10); wp++;
-        w.enemies = strtol(wp,&wp,10); wp++;
-        w.enemy_template.hp = w.enemy_template.hp_max = strtol(wp,&wp,10); wp++;
-        w.enemy_template.speed = strtol(wp,&wp,10); wp++;
-        w.enemy_template.price = strtol(wp,&wp,10); wp++;
-        w.enemy_template.timeleft = strtol(wp,&wp,10); wp++;
+        w.timeleft = strtol(wp,&wp,10);
+        wp++;
+        w.enemies = strtol(wp,&wp,10);
+        wp++;
+        w.enemy_template.hp = w.enemy_template.hp_max = strtol(wp,&wp,10);
+        wp++;
+        w.enemy_template.speed = strtol(wp,&wp,10);
+        wp++;
+        w.enemy_template.price = strtol(wp,&wp,10);
+        wp++;
+        w.enemy_template.timeleft = strtol(wp,&wp,10);
+        wp++;
         wNew(data, &w);
     }
 
@@ -732,7 +747,7 @@ struct game gNew(char *level)
 
     parse(level, levelParser, &g);
 
-    for(i=0;i<15*16;i++)
+    for(i=0; i<15*16; i++)
         g.grid[i/16][i%16] = g.map[i];
 
     g.needpath = 1;
@@ -760,7 +775,7 @@ void gDo(struct game *g)
         g->needpath = pPathfind(g, 0);
     }
 
-// Iterate enemylist and move them around.
+    // Iterate enemylist and move them around.
     while (e)
     {
         if ( e->timeleft == 0 )
@@ -792,11 +807,11 @@ void gDo(struct game *g)
     {
         if ( !g->enemy )
         {
-          // No more waves or enemies left... The game is definitly over.
+            // No more waves or enemies left... The game is definitly over.
         }
         return;
     }
-    
+
     g->wave->timeleft--;
 
     if ( !g->wave->timeleft )

@@ -41,7 +41,7 @@ void parse(char *fn, void parser(), void *data)
 
         // Line is empty, or a comment.
         if ( *wp == '#' ||
-             *wp == '\0' ) continue;
+                *wp == '\0' ) continue;
 
         while(*wp != '\0')
         {
@@ -64,7 +64,8 @@ void parse(char *fn, void parser(), void *data)
         {
             parser(data, kp, vp);
         }
-        else {
+        else
+        {
             fprintf(stderr, "Didn't understand line %d in %s\n", line, fn);
         }
     }

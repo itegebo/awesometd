@@ -2,7 +2,8 @@
 #define __AUDIO_H__
 #include <SDL_mixer.h>
 
-struct audio {
+struct audio
+{
     Mix_Chunk *laser[3];
 };
 

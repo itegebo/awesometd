@@ -12,13 +12,15 @@
 #include "game.h"
 #include "menu.h"
 
-struct texture {
+struct texture
+{
     GLuint texid;
     int w, h;
 };
 
-struct video {
-	SDL_Surface *s;
+struct video
+{
+    SDL_Surface *s;
     struct texture logo;
 
     struct texture terrain;

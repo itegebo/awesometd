@@ -6,7 +6,8 @@
 #include "hiscore.h"
 #include "filepath.h"
 
-const char *levels[] = {
+const char *levels[] =
+{
     "share/level",
     NULL
 };

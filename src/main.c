@@ -7,12 +7,14 @@
 #include "input.h"
 #include "game.h"
 
-struct main {
+struct main
+{
     int last_draw;
     int f;
 };
 
-struct all {
+struct all
+{
     struct video v;
     struct input i;
     struct game g;
@@ -46,8 +48,12 @@ int main(int argc, char *argv[])
     {
         switch(all.g.state)
         {
-            case GAMESTATE_INGAME: gDo(&all.g); break;
-            case GAMESTATE_MENU: mDo(&all.mn); break;
+        case GAMESTATE_INGAME:
+            gDo(&all.g);
+            break;
+        case GAMESTATE_MENU:
+            mDo(&all.mn);
+            break;
         }
 
         // Drawing is done here.

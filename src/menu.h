@@ -10,13 +10,15 @@
 
 #include "filepath.h"
 
-struct menuelement {
+struct menuelement
+{
     char *text;
     int score;
     struct menuelement *next;
 };
 
-struct menu {
+struct menu
+{
     int currentmenu;
     int hovering;
     int quit;

@@ -17,23 +17,25 @@
 #ifndef __FILEPATH_H__
 #define __FILEPATH_H__
 
-typedef struct {
+typedef struct
+{
     char *filename;
     char *fullname;
     const char *path;
     void *meta;
 } FilePathElement_t;
 
-typedef struct {
+typedef struct
+{
     FilePathElement_t *e;
     int e_n;
     int e_max;
 } FilePath_t;
 
-FilePath_t * 
+FilePath_t *
 fpEnumerate(const char *paths[], void* meta(char * fn));
 
-void 
+void
 fpFreeFilePath(FilePath_t *fp, void metafree(void * m));
 
 #endif /* __FILEPATH_H__ */

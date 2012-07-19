@@ -38,44 +38,48 @@
 
 #define GS_VIDEO_LASER_RED	1
 
-struct debuff {
-	int type;
-	int damage;
-	int interval;
-	float speed_mod;
-	int time_left;
-	int counter;   // Just a counter that is 
-	int video_mod; // if we should apply a video effect on the enemy affected by this
+struct debuff
+{
+    int type;
+    int damage;
+    int interval;
+    float speed_mod;
+    int time_left;
+    int counter;   // Just a counter that is
+    int video_mod; // if we should apply a video effect on the enemy affected by this
 };
 
-struct shot {
+struct shot
+{
     float x, y;
     float dx, dy;
-	float tx, ty;
+    float tx, ty;
     int type;
     int damage;
     float speed;
-	struct debuff debuff;
-	int video;
-	int rot;
+    struct debuff debuff;
+    int video;
+    int rot;
     struct shot *next;
 };
 
-struct tower {
+struct tower
+{
     int x, y;
     char *name;
     int id;
     int price;
     int speed;
     int progress;
-	int range;
+    int range;
     int damage;
     int rot;
-	struct shot shot_template;
+    struct shot shot_template;
     struct tower *next;
 };
 
-struct enemy {
+struct enemy
+{
     int x, y;
     int hp, hp_max;
     int speed;
@@ -87,18 +91,20 @@ struct enemy {
     int frame;
     int rot;
     int rot_goal;
-	struct debuff debuffs[G_DEBUFF_MAX];
+    struct debuff debuffs[G_DEBUFF_MAX];
     struct enemy *next;
 };
 
-struct wave {
+struct wave
+{
     int timeleft;
     struct enemy enemy_template;
     int enemies; // The amount of enemies to spawn.
     struct wave *next;
 };
 
-struct game {
+struct game
+{
     int state;
     struct tower *towerT;
     struct tower *towerS;

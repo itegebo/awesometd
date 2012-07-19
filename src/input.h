@@ -5,13 +5,15 @@
 #include "menu.h"
 
 // TODO Provide more robust debugging facility.
-struct flags {
-	int debug;
+struct flags
+{
+    int debug;
 };
 
-struct input {
-	struct flags f;
-	int pushCX, pushCY;
+struct input
+{
+    struct flags f;
+    int pushCX, pushCY;
     int pushTID;
 };
 
