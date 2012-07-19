@@ -17,3 +17,7 @@ src/Makefile.in
 stamp-h1
 awesometd
 compile
+**/#*
+**/.#*
+.*.swp
+**/.*.swp
