@@ -44,7 +44,6 @@ checkfield(struct queue_t *q, struct grid_t *g)
 
     // Check if the cell is a walkable area, return if it isn't.
     if ((g->ar[cursor] != 0) && (g->ar[cursor] != 255) && g->ar[cursor] != 254) {
-//        if (g->ar[cursor] == 1||g->ar[cursor] == )
             g->path[cursor] = -1;
         return;
     }
@@ -97,15 +96,12 @@ copy_grid(struct game *g)
     struct grid_t *grid;
     int x,y,i;
 
-//    printf("allocating...\n");
     grid = malloc(sizeof(struct grid_t));
 
-//    printf("setting some values (G_SIZE = %d, G_WIDTH = %d, G_HEIGHT = %d)\n", G_SIZE, G_WIDTH, G_HEIGHT);
     grid->size = G_SIZE;
 	grid->w = G_WIDTH;
 	grid->h = G_HEIGHT;
 
-//    printf("more allocating...\n");
     grid->ar = calloc(grid->size, sizeof(int));
     grid->path = calloc(grid->size, sizeof(int));
     grid->marked = calloc(grid->size, sizeof(int));
@@ -113,7 +109,6 @@ copy_grid(struct game *g)
     // Reads in the level from stdin.
     for(y=0; y < G_HEIGHT; y++) {
 		for(x=0; x < G_WIDTH; x++) {
-//            printf("reading %d x %d\n", x, y);
 			grid->ar[i] = g->grid[y][x];
 			i++;
 		}
@@ -178,21 +173,6 @@ int pPathfind(struct game *g, int checkonly)
     grid = copy_grid(g);
     printf("Allocating queue\n");
     queue = alloc_queue(grid);
-/*    printf("Have we crashed yet?\n");
-    for(i=0;i< (signed int)grid->size;i++)
-    {
-        if ( i % grid->w == 0 ) printf("\n");
-        switch(grid->ar[i]) {
-            case 0:     printf("%3d",grid->path[i]); break;
-            case 1:     printf("###"); break;
-            case 2:     printf("XXX"); break;
-            case 254:   printf("SSS"); break;
-            case 255:   printf("EEE"); break;
-
-        }
-    }
-    printf("\n\n");*/
-
 
     for(i=0; i < (signed int)grid->size; i++) {
         if (grid->ar[i] == 255) {
@@ -204,35 +184,19 @@ int pPathfind(struct game *g, int checkonly)
         checkfield(queue, grid);
         queue->head++;
 		if ( queue->head >= (signed int)grid->size ) break;
-//		printf("Gonna check: %d (%d)\n", HEAD(queue).id, queue->head);
     }
-
-/*    for(i=0;i< (signed int)grid->size;i++)
-    {
-        if ( i % grid->w == 0 ) printf("\n");
-        switch(grid->ar[i]) {
-            case 0:     printf("%3d",grid->path[i]); break;
-            case 1:     printf("###"); break;
-			case 2:     printf("XXX"); break;
-            case 254:   printf("SSS"); break;
-            case 255:   printf("EEE"); break;
-
-        }
-    }
-    printf("\n\n");*/
-
 
 	if ( checkonly )
 	{
 		int ret = 0;
-//		puts("We need to check if any of the entrances are blocked.");
+                // TODO Determine if the following comment is still valid.
+                // We need to check if any of the entrances are blocked.
 		for(i=0;i<g->startN;i++)
 		{
 			if ( grid->path[g->start[i][0]+(g->start[i][1]*G_WIDTH)] > 0 )
 			{
 				continue;
 			}
-//			printf("Start position no: %d, cell %d x %d, is value %d\n", i, g->start[i][0], g->start[i][1]*G_WIDTH, grid->path[g->start[i][0]+(g->start[i][1]*G_WIDTH)]);
 			ret++;
 		}
 		free_queue(queue);

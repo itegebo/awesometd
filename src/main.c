@@ -6,7 +6,6 @@
 #include "video.h"
 #include "input.h"
 #include "game.h"
-//#include "audio.h"
 
 struct main {
     int last_draw;
@@ -18,7 +17,6 @@ struct all {
     struct input i;
     struct game g;
     struct menu mn;
-//    struct audio a;
 
     struct main m;
 };
@@ -43,8 +41,6 @@ int main(int argc, char *argv[])
 
     all.v = vSetup();
     all.mn = mSetup();
-//    all.a = aSetup();
-//    all.g = gNew("share/level/level1.lvl");
 
     while ( !iEventLoop(&all.i, &all.g, &all.mn) && all.mn.quit == 0 ) // Inputhandling is done here.
     {
@@ -53,8 +49,6 @@ int main(int argc, char *argv[])
             case GAMESTATE_INGAME: gDo(&all.g); break;
             case GAMESTATE_MENU: mDo(&all.mn); break;
         }
-
-//        aDo(&all.g, &all.a);
 
         // Drawing is done here.
         vDraw(&all.v, &all.g, &all.mn);

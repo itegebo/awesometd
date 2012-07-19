@@ -4,7 +4,7 @@
 #include "game.h"
 #include "menu.h"
 
-// This feels wrong.
+// TODO Provide more robust debugging facility.
 struct flags {
 	int debug;
 };

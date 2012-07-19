@@ -69,8 +69,6 @@ static void iMouseButtonEvent(SDL_MouseButtonEvent b, struct input *i, struct ga
         }
         else if ( m->currentmenu == MENU_MAINMENU && m->hovering == 0 )
         {
-//            *g = gNew("share/level/level1.lvl");
-//            g->state = GAMESTATE_INGAME;
             m->currentmenu = MENU_LEVELSELECT;
         }
         else if ( m->currentmenu == MENU_MAINMENU && m->hovering == 3 )
@@ -123,7 +121,6 @@ static void iMouseButtonEvent(SDL_MouseButtonEvent b, struct input *i, struct ga
 	if ( b.type == SDL_MOUSEBUTTONUP && b.x / 32 == i->pushCX && b.y / 32 == i->pushCY)
 	{
 		gClickCell(g, b.x/32, b.y/32);
-//		printf("Clicked cell: %d x %d\n", b.x/32, b.y/32);
 		i->pushCX = i->pushCY = -1;
 	}
 	if ( b.type == SDL_MOUSEBUTTONDOWN )

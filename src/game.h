@@ -98,11 +98,6 @@ struct wave {
     struct wave *next;
 };
 
-//struct soundtable {
-//    int laser;
-//    int laser_last;
-//};
-
 struct game {
     int state;
     struct tower *towerT;
@@ -117,7 +112,6 @@ struct game {
     struct enemy *enemy;
     struct wave *wave;
     struct shot *shot;
-//    struct soundtable st;
 };
 
 void gDo(struct game *g);

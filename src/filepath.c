@@ -58,7 +58,6 @@ fpEnumeratePath(FilePath_t *fp, const char *path)
          *  files, and whatnot.
          */
 #ifndef WIN32
-// dirent on Windows is crap / nonexistent.  TODO: Fix this.
         if ( entry->d_type == DT_DIR )
             continue;
 #else

@@ -199,13 +199,6 @@ static void vDrawGrid(const struct video *v, const struct game *cg)
                 default:r = 1.0; g = 1.0; b = 1.0; break;
             }
             vDrawTexturedQuad(px, py, pw, ph, 0, 1, 1, 1, 1, v->terrain.texid, cg->grid[h][w], S32X32);
-//            vDrawColoredQuad(px, py, pw, ph, 0, r, g, b, 1.0);
-// Uncomment below to print the pathfinding results on the map.
-/*            if ( cg->grid[h][w] == 0 )
-            {*/
-//                sprintf((char *)&buf, "%4d",cg->path[h][w]);
-//                vDrawString(px, py, buf, 0, 0, 0, 1);
-//            }*/
         }
     }
 }
@@ -218,7 +211,6 @@ static void vDrawEnemy(struct game *g, struct video *v)
         float a;
         if ( e->timeleft <= 50 ) {
             a = 1.0 - ((float)e->timeleft * 0.04);
-//            vDrawColoredQuad(e->x, e->y, 32, 32, 0, 0.5, 0.5, 0.5, a);
             vDrawTexturedQuad(e->x, e->y, 32, 32, e->rot, 1, 1, 1, a, v->enemy2.texid, 0, S32X32);
             vDrawColoredQuad(e->x+2, e->y+28, ((float)e->hp/(float)e->hp_max)*28.0, 2, 0, 0, 1, 0, a);
             if ( e->debuffs[GDB_TYPE_DOT].time_left )
@@ -232,16 +224,12 @@ static void vDrawEnemy(struct game *g, struct video *v)
 
 static void vDrawTower(struct game *g, struct video *v)
 {
-//    char buf[4];
     struct tower *t = g->tower;
     while(t)
     {
-//        sprintf((char *)&buf, "%2d", t->type);
         vDrawTexturedQuad(t->x*32, t->y*32, 32, 32, 0, 1, 1, 1, 1, v->tower1.texid, 0, S32X32);
         vDrawTexturedQuad(t->x*32, t->y*32, 32, 32, t->rot, 1, 1, 1, 1, v->tower1.texid, 8, S32X32);
 
-//        vDrawColoredQuad(t->x*32+4, t->y*32+4, 24, 24, 0, 0.5, 0.5, 0.9, 1);
-//        vDrawString(t->x*32+4, t->y*32+4, buf, 0, 0, 0, 1);
         t = t->next;
     }
 }
@@ -390,7 +378,7 @@ void vDraw(struct video *v, struct game *g, struct menu *m)
 {
     glLoadIdentity();
     glClear(GL_COLOR_BUFFER_BIT);
-// Stuff
+
     if ( g->state == GAMESTATE_MENU )
     {
         vDrawTexturedQuad(0, 0, 640, 240, 0, 1, 1, 1, 1, v->logo.texid, 0, SFULL);

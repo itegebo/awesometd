@@ -92,8 +92,6 @@ static void sNew(struct game *g, struct tower *t, struct enemy *e)
     s->video = t->shot_template.video;
     s->rot = ((float)(atan2((int)e->y-((int)t->y*32),(int)e->x-((int)t->x*32))*180)/M_PI);
 
-//    g->st.laser++;
-
     if ( s->type == GS_TYPE_DIRECT )
     {
         s->x = e->x+16;
@@ -794,7 +792,7 @@ void gDo(struct game *g)
     {
         if ( !g->enemy )
         {
-//            puts("No more waves or enemies left... The game is definitly over.");
+          // No more waves or enemies left... The game is definitly over.
         }
         return;
     }

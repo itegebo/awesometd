@@ -22,7 +22,6 @@ struct menu {
     int quit;
     char *mainmenu[MAINMENU_ELEMENTS];
     FilePath_t *levels;
-//    struct menuelement *levels;
     int level_p, level_h;
 };
 
