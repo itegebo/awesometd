@@ -21,18 +21,24 @@ struct all
     struct menu mn;
 
     struct main m;
-} all = {0};
+};
 
-int main(int argc, char *argv[])
-{
+void init(struct all* all_p) {
     if ( SDL_Init(SDL_INIT_VIDEO|SDL_INIT_AUDIO) != 0 )
     {
         printf("SDL_Init failed: %s\n", SDL_GetError());
-        exit(1);
+        exit(EXIT_FAILURE);
     }
 
-    all.v = vSetup();
-    all.mn = mSetup();
+    all_p->v = vSetup();
+    all_p->mn = mSetup();
+  return;
+}
+
+int main(int argc, char *argv[])
+{
+  struct all all = {0};
+  init(&all);
 
     while ( !iEventLoop(&all.i, &all.g, &all.mn) && all.mn.quit == 0 ) // Inputhandling is done here.
     {
@@ -58,5 +64,5 @@ int main(int argc, char *argv[])
         all.m.last_draw = SDL_GetTicks();
     }
 
-    return 0;
+    return EXIT_SUCCESS;
 }
