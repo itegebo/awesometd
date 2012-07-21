@@ -27,12 +27,7 @@ int main(int argc, char *argv[])
 {
     struct all all = {0};
 
-    if ( SDL_Init(SDL_INIT_VIDEO) != 0 )
-    {
-        printf("SDL_Init failed: %s\n", SDL_GetError());
-        exit(1);
-    }
-    if ( SDL_InitSubSystem(SDL_INIT_AUDIO) != 0 )
+    if ( SDL_Init(SDL_INIT_VIDEO|SDL_INIT_AUDIO) != 0 )
     {
         printf("SDL_Init failed: %s\n", SDL_GetError());
         exit(1);
