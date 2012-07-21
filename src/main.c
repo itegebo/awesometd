@@ -25,10 +25,7 @@ struct all
 
 int main(int argc, char *argv[])
 {
-    struct all all;
-
-    // Is there any way I can make sure that all is 0 without doing this manually?
-    memset(&all, '\0', sizeof(struct all));
+    struct all all = {0};
 
     if ( SDL_Init(SDL_INIT_VIDEO) != 0 )
     {
