@@ -1,0 +1,38 @@
+digraph g {
+subgraph cluster_0 {
+"audio.c";
+"filepath.c";
+"game.c";
+"hiscore.c";
+"input.c";
+"main.c";
+"menu.c";
+"parser.c";
+"pathfind.c";
+"video.c";
+color=lightgrey;
+}
+"main.c" -> "menu.h";
+"main.c" -> "video.h";
+"main.c" -> "input.h";
+"main.c" -> "game.h";
+"menu.c" -> "menu.h";
+"menu.c" -> "hiscore.h";
+"menu.c" -> "filepath.h";
+"input.h" -> "game.h";
+"input.h" -> "menu.h";
+"parser.c" -> "parser.h";
+"input.c" -> "input.h";
+"input.c" -> "game.h";
+"hiscore.c" -> "hiscore.h";
+"game.c" -> "game.h";
+"game.c" -> "parser.h";
+"menu.h" -> "filepath.h";
+"audio.c" -> "game.h";
+"audio.c" -> "audio.h";
+"video.c" -> "video.h";
+"pathfind.c" -> "game.h";
+"video.h" -> "game.h";
+"video.h" -> "menu.h";
+"filepath.c" -> "filepath.h";
+}

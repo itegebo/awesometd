@@ -1,0 +1,97 @@
+digraph g {
+subgraph cluster_0 {
+color=lightgrey;
+"<SDL.h>";
+"<SDL.h>";
+"<SDL_mixer.h>";
+"<SDL.h>";
+"<SDL_mixer.h>";
+"<SDL_image.h>";
+"<SDL.h>";
+"<SDL_opengl.h>";
+}
+subgraph cluster_1 {
+color=lightgrey;
+"<assert.h>";
+"<dirent.h>";
+"<errno.h>";
+"<math.h>";
+"<sqlite3.h>";
+"<stdint.h>";
+"<stdio.h>";
+"<stdlib.h>";
+"<string.h>";
+"<sys/stat.h>";
+}
+subgraph cluster_2 {
+color=lightgrey;
+"audio.h";
+"filepath.h";
+"game.h";
+"hiscore.h";
+"input.h";
+"menu.h";
+"parser.h";
+"video.h";
+}
+"main.c" -> "<stdio.h>";
+"main.c" -> "<SDL.h>";
+"main.c" -> "menu.h";
+"main.c" -> "video.h";
+"main.c" -> "input.h";
+"main.c" -> "game.h";
+"menu.c" -> "<stdio.h>";
+"menu.c" -> "<stdlib.h>";
+"menu.c" -> "<string.h>";
+"menu.c" -> "<dirent.h>";
+"menu.c" -> "menu.h";
+"menu.c" -> "hiscore.h";
+"menu.c" -> "filepath.h";
+"input.h" -> "game.h";
+"input.h" -> "menu.h";
+"parser.c" -> "<stdio.h>";
+"parser.c" -> "<stdint.h>";
+"parser.c" -> "<stdlib.h>";
+"parser.c" -> "<errno.h>";
+"parser.c" -> "<assert.h>";
+"parser.c" -> "<string.h>";
+"parser.c" -> "parser.h";
+"input.c" -> "<SDL.h>";
+"input.c" -> "input.h";
+"input.c" -> "game.h";
+"hiscore.c" -> "<sqlite3.h>";
+"hiscore.c" -> "hiscore.h";
+"game.c" -> "<stdio.h>";
+"game.c" -> "<stdlib.h>";
+"game.c" -> "<string.h>";
+"game.c" -> "<math.h>";
+"game.c" -> "game.h";
+"game.c" -> "parser.h";
+"audio.h" -> "<SDL_mixer.h>";
+"menu.h" -> "filepath.h";
+"audio.c" -> "<stdlib.h>";
+"audio.c" -> "<SDL.h>";
+"audio.c" -> "<SDL_mixer.h>";
+"audio.c" -> "game.h";
+"audio.c" -> "audio.h";
+"video.c" -> "video.h";
+"video.c" -> "<SDL_image.h>";
+"parser.h" -> "<stdlib.h>";
+"parser.h" -> "<string.h>";
+"pathfind.c" -> "<stdio.h>";
+"pathfind.c" -> "<stdint.h>";
+"pathfind.c" -> "<stdlib.h>";
+"pathfind.c" -> "<string.h>";
+"pathfind.c" -> "<assert.h>";
+"pathfind.c" -> "game.h";
+"video.h" -> "<SDL.h>";
+"video.h" -> "<SDL_opengl.h>";
+"video.h" -> "game.h";
+"video.h" -> "menu.h";
+"filepath.c" -> "<stdio.h>";
+"filepath.c" -> "<stdlib.h>";
+"filepath.c" -> "<string.h>";
+"filepath.c" -> "<dirent.h>";
+"filepath.c" -> "<sys/stat.h>";
+"filepath.c" -> "filepath.h";
+}
