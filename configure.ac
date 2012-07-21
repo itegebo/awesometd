@@ -6,8 +6,7 @@ AC_INIT([awesometd], [0.5], [awesometd@trygvevea.com])
 AC_CONFIG_SRCDIR([src])
 AC_CONFIG_HEADERS([config.h])
 
-
-AM_INIT_AUTOMAKE(awesometd, 0.4-devel, [-Wall -Werror foreign])
+AM_INIT_AUTOMAKE([1.11 -Wall -Werror foreign])
 
 # Checks for programs.
 AC_PROG_CC
