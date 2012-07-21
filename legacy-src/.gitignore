@@ -1,8 +1,0 @@
-*.o
-awesometd
-awesometd.exe
-gmon.out
-SDL.dll
-tags
-TAGS
-gmon.out
