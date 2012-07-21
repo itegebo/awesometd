@@ -21,12 +21,10 @@ struct all
     struct menu mn;
 
     struct main m;
-};
+} all = {0};
 
 int main(int argc, char *argv[])
 {
-    struct all all = {0};
-
     if ( SDL_Init(SDL_INIT_VIDEO|SDL_INIT_AUDIO) != 0 )
     {
         printf("SDL_Init failed: %s\n", SDL_GetError());
